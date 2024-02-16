@@ -35,7 +35,7 @@ This Correlation Matrix shows the relationship between various Environmental fac
 ![Correlation_Matrix](https://github.com/Jaiyadav88/Data-Structures/assets/90555918/a48c0fbf-8cfd-4670-9eef-e0ac5ebd2915)
 
 # 5.Visualization of the Different Factors We Considered: The primary gases that produce eruptive pollution are 
-
+We have Visualized the impact of Various gases that causes pollution through our curves by using python module of Matplotlib
 ![Untitled design (1)](https://github.com/Jaiyadav88/Data-Structures/assets/90555918/9a2174a3-4415-4c21-99eb-3c04e4c3a3af)
 
 
