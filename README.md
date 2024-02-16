@@ -29,7 +29,8 @@ A year-wise visualization of the mean values for various air quality parameters.
 
 # 4.Correlation_Matrix.png:
 
-This Correlation Matrix shows the relationship between various Environmental factors which affects the climate like Benzene ,Toluene,NH3(Ammonia) and many more.It helps in understanding the connectivity of these variables
+This Correlation Matrix shows the relationship between various Environmental factors which affects the climate PM2.5,PM10,NO,NO2,NOx,NH3,CO,SO2,O3,Benzene,Toluene,Xylene,AQI
+.It helps in understanding the connectivity of these variables
 
 ![Correlation_Matrix](https://github.com/Jaiyadav88/Data-Structures/assets/90555918/a48c0fbf-8cfd-4670-9eef-e0ac5ebd2915)
 
