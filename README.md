@@ -9,6 +9,9 @@ The GeoThermoExplorers project started because we wanted to tackle big problems 
 Visualization of various Factors That affect Pollution
 
 # 1.AQI_BUCKET_VIzwalization.png:
+This graph visualizes the Air Quality Index (AQI) distribution across different pollution levels. The color-coded buckets provide a clear representation of air quality, aiding in the identification of pollution severity at a glance.
+
+The pollution levels are ranging from bars of poor to Good depicted with different colors
 ![AQI_BUCKET_VIzwalization](https://github.com/Jaiyadav88/Data-Structures/assets/90555918/0001d0a5-dd48-4ee8-b448-204d6c21b92e)
 
 
