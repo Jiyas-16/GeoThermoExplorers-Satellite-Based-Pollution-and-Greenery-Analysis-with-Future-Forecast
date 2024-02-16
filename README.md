@@ -14,4 +14,17 @@ This graph visualizes the Air Quality Index (AQI) distribution across different 
 The pollution levels are ranging from bars of poor to Good depicted with different colors
 ![AQI_BUCKET_VIzwalization](https://github.com/Jaiyadav88/Data-Structures/assets/90555918/0001d0a5-dd48-4ee8-b448-204d6c21b92e)
 
+# 2.each_air_quality_parameter_vs:
+
+Each air quality parameter is compared separately to pertinent factors in this graph set. These visuals provide a comprehensive grasp of the links between the various parameters by offering a thorough analysis of how each one interacts with the others.
+
+
+![each_air_quality_parameter_vs_AQI](https://github.com/Jaiyadav88/Data-Structures/assets/90555918/77b5d645-0639-45b7-bce2-128504c351db)
+
+# 3.Mean_of_Air_Quality_Parameters_Year_Wise.png:
+
+A year-wise visualization of the mean values for various air quality parameters. This graph offers insights into the trends and variations in air quality over time, aiding in the identification of long-term patterns and potential influencing factors.
+
+![Mean_of_Air_Quality_Parameters_Year_Wise](https://github.com/Jaiyadav88/Data-Structures/assets/90555918/baeb5bee-6083-491e-b8b8-1f5041a954ef)
+
 
