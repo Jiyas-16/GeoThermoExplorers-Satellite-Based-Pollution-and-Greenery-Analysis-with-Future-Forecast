@@ -1,0 +1,110 @@
+/////// URL - https://code.earthengine.google.com/?scriptPath=users%2Faman_bisht%2FTemperature_Estimation%3ATE2
+
+
+
+// Part 1: Nitrogen Dioxide (NO2) Visualization
+var no2Collection = ee.ImageCollection('COPERNICUS/S5P/NRTI/L3_NO2')
+    .select('NO2_column_number_density')
+    .filterDate('2019-06-01', '2019-06-06');
+    
+var no2Viz = {
+    min: 0,
+    max: 0.0002,
+    palette: ['black', 'blue', 'purple', 'cyan', 'green', 'yellow', 'red']
+};
+
+Map.addLayer(no2Collection.mean(), no2Viz, 'S5P NO2');
+
+
+// Part 2: Population Density Visualization
+var populationDataset = ee.ImageCollection('CIESIN/GPWv411/GPW_Population_Density').first();
+var populationRaster = populationDataset.select('population_density');
+
+var populationViz = {
+    max: 1000.0,
+    palette: [
+        'ffffe7', 'FFc869', 'ffac1d', 'e17735', 'f2552c', '9f0c21'
+    ],
+    min: 200.0
+};
+
+Map.addLayer(populationRaster, populationViz, 'Population Density');
+
+
+
+
+// Part 3: Land Surface Temperature Visualization
+var temperatureDataset = ee.ImageCollection('MODIS/061/MOD11A1')
+    .filter(ee.Filter.date('2018-01-01', '2018-05-01'));
+var landSurfaceTemperature = temperatureDataset.select('LST_Day_1km');
+
+var temperatureViz = {
+    min: 13000.0,
+    max: 16500.0,
+    palette: [
+        '040274', '040281', '0502a3', '0502b8', '0502ce', '0502e6',
+        '0602ff', '235cb1', '307ef3', '269db1', '30c8e2', '32d3ef',
+        '3be285', '3ff38f', '86e26f', '3ae237', 'b5e22e', 'd6e21f',
+        'fff705', 'ffd611', 'ffb613', 'ff8b13', 'ff6e08', 'ff500d',
+        'ff0000', 'de0101', 'c21301', 'a71001', '911003'
+    ],
+};
+
+Map.addLayer(landSurfaceTemperature, temperatureViz, 'Land Surface Temperature');
+
+
+
+// Part 4: Local Climate Zones (LCZ) Visualization
+var lczDataset = ee.ImageCollection('RUB/RUBCLIM/LCZ/global_lcz_map/latest').mosaic();
+
+var lczViz = {
+    bands: ['LCZ_Filter'],
+    min: 1,
+    max: 17,
+    palette: [
+        '8c0000', 'd10000', 'ff0000', 'bf4d00', 'ff6600',
+        'ff9955', 'faee05', 'bcbcbc', 'ffccaa', '555555',
+        '006a00', '00aa00', '648525', 'b9db79', '000000',
+        'fbf7ae', '6a6aff'
+    ]
+};
+
+Map.addLayer(lczDataset, lczViz, 'LCZ_Filter');
+
+
+
+// Part 5: Aboveground Biomass Carbon Visualization
+var biomassDataset = ee.ImageCollection('NASA/ORNL/biomass_carbon_density/v1');
+var biomassViz = {
+    bands: ['agb'],
+    min: -50.0,
+    max: 80.0,
+    palette: ['d9f0a3', 'addd8e', '78c679', '41ab5d', '238443', '005a32']
+};
+
+Map.addLayer(biomassDataset, biomassViz, 'Aboveground Biomass Carbon');
+
+
+
+
+// Part 6: Land Cover Visualization
+var landcoverDataset = ee.Image('COPERNICUS/Landcover/100m/Proba-V-C3/Global/2019').select('discrete_classification');
+
+Map.addLayer(landcoverDataset, {}, 'Land Cover');
+
+
+
+
+// Part 7: Normalized Difference Vegetation Index (NDVI) Visualization
+var ndviDataset = ee.ImageCollection('NASA/GIMMS/3GV0').filter(ee.Filter.date('2013-06-01', '2013-12-31'));
+var ndvi = ndviDataset.select('ndvi');
+
+var ndviViz = {
+    min: -1.0,
+    max: 1.0,
+    palette: ['000000', 'f5f5f5', '119701']
+};
+
+Map.addLayer(ndvi, ndviViz, 'NDVI');
+
+
