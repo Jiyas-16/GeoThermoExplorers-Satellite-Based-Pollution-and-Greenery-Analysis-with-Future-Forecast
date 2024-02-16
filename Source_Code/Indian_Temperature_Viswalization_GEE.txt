@@ -1,0 +1,114 @@
+////   URL - https://code.earthengine.google.com/91e2873185d1bcd1bad334f11f32e93b
+
+
+// Importing Country boundry feature collection
+var dataset = ee.FeatureCollection("USDOS/LSIB_SIMPLE/2017");
+
+// Filtering Indian Boundry
+var ind_border = dataset.filter(ee.Filter.eq('country_na','India'));
+
+// Adding Indian Border Outline in Layer
+Map.addLayer(ind_border, {}, 'Indian Border');
+Map.centerObject(ind_border, 4);
+
+// Import LST image collection
+var modis = ee.ImageCollection("MODIS/061/MOD11A2");
+
+// for 2000
+// Defining Start Date and Date Range
+var startDate = ee.Date('2000-01-01');
+var dateRange = ee.DateRange(startDate, startDate.advance(1,'year'));
+
+// Filter modis by date range
+var mod2 = modis.filterDate(dateRange);
+
+
+// Selecting band - LST_Day_1km	(Day land surface temperature)
+var mod3 = mod2.select('LST_Day_1km');
+
+// Scale to kelvin and convert to celsius
+var mod4 = mod3.map(function(img){
+  return img
+  .multiply(0.02)
+  .subtract(273.15)
+  .copyProperties(img, ['system:time_start']);
+});
+
+
+// Chart time series of LST for india in 2023.
+var ts0 = ui.Chart.image.series({
+  imageCollection: mod4,
+  region: ind_border,
+  reducer: ee.Reducer.mean(),
+  scale: 1000,
+  xProperty: 'system:time_start'})
+  .setOptions({
+    title: 'LST 2022 Time Series',
+    vAxis: {title: 'LST Celsius'}
+  });
+    
+    
+print(ts0);
+
+// Calculating 8-day mean temperature for india in 2022.
+var clipLSTc = mod4.mean().clip(ind_border);
+
+// Add Clipped image layer to the map.
+var viswalParameter = {
+  min: 10, max: 45,
+  palette: ['blue', 'royalblue', 'cyan', 'lightcyan', 'white', 'lightyellow', 'yellow', 'orange', 'darkorange', 'red']
+};
+
+Map.addLayer(clipLSTc, viswalParameter, 'Mean Temperature 2000');
+
+
+
+
+
+// for 2023
+// Defining Start Date and Date Range
+var start_date = ee.Date('2023-01-01');
+var date_range = ee.DateRange(start_date, start_date.advance(1,'year'));
+
+// Filter modis by date range
+var modis2 = modis.filterDate(date_range);
+
+
+// Selecting band - LST_Day_1km	(Day land surface temperature)
+var modis3 = modis2.select('LST_Day_1km');
+
+// Scale to kelvin and convert to celsius
+var modis4 = modis3.map(function(img){
+  return img
+  .multiply(0.02)
+  .subtract(273.15)
+  .copyProperties(img, ['system:time_start']);
+});
+
+
+// Chart time series of LST for india in 2023.
+var ts1 = ui.Chart.image.series({
+  imageCollection: modis4,
+  region: ind_border,
+  reducer: ee.Reducer.mean(),
+  scale: 1000,
+  xProperty: 'system:time_start'})
+  .setOptions({
+    title: 'LST 2022 Time Series',
+    vAxis: {title: 'LST Celsius'}
+  });
+    
+    
+print(ts1);
+
+// Calculating 8-day mean temperature for india in 2022.
+var clippedLSTc = modis4.mean().clip(ind_border);
+
+// Add Clipped image layer to the map.
+var viswalParameter = {
+  min: 10, max: 45,
+  palette: ['blue', 'royalblue', 'cyan', 'lightcyan', 'white', 'lightyellow', 'yellow', 'orange', 'darkorange', 'red']
+};
+
+Map.addLayer(clippedLSTc, viswalParameter, 'Mean Temperature 2023');
+
